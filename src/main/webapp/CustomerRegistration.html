@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>CUSTOMER REGISTRATION</title>
+    <link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+<div class="login-box">
+  <h1>REGISTRATION</h1>
+  <form action="webapi/customerapi/customerid" method="POST">
+  <div class="textbox">
+    <i class="fa fa-user"></i>
+    <input type="text" name="CustomerName" placeholder="CustomerName" required>
+  </div>
+  <div class="textbox">
+    <i class="fa fa-envelope"></i>
+    <input type="text" name="MailId" placeholder="MailId" required>
+  </div>
+  <div class="textbox">
+    <i class="fa fa-phone"></i>
+    <input type="text" name="MobileNumber" placeholder="MobileNumber" required> 
+  </div>
+  <!-- <div class="textbox">
+  <input type="date" id="DateofBirth" name="DateofBirth">
+  </div> -->
+  <!-- <select class="textbox" name="Gender" required>
+  
+<option><i class="fa fa-envelope"></i>Select Gender</option>
+<option>Male</option>
+<option>Female</option>
+<option>Other</option>		 -->
+<div class="textbox">
+    <i class="fa fa-envelope"></i>
+<input type="text" name="Address" placeholder="Address">
+</div>
+<div class="textbox">
+  <i class="fa fa-cash"></i>
+  <input type="number" name="CurrentAmount" placeholder="DepositAmount" min="500" required> 
+</div>
+<input type="submit" name="submit" class="btn" value="Register">
+</form>
+</div>
+</body>
+</html>
