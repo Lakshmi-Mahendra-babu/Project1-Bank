@@ -52,6 +52,10 @@ public class AllCustomers extends HttpServlet {
 			out.println("<tr><td>" + caccno + "</td><td>" + cname + "</td><td>" + cmail + "</td><td>" + cmobile + "</td><td>"+ caddress +"</td><td>"+ camonut+ "</td><td>"+ ccredit +"</td><td>" + cdebit + "</td></tr>"); 
 			
 		}
+		out.println("<script>");
+        String alert = "Customers Details Loaded Sucessfully!";
+		out.println("alert('" + alert + "');");
+        out.println("</script>");
 		 RequestDispatcher rd=request.getRequestDispatcher("EmployeeHome.html");  
          rd.include(request, response); 
 	}

@@ -32,11 +32,18 @@ public class EmployeeLogin extends HttpServlet {
 		PrintWriter out=response.getWriter();
 		if(userid.equalsIgnoreCase(ui)) {
 			if(password.equalsIgnoreCase(pass)) {
-//				out.println("Employee Login Sucess!");  
+				out.println("<script>");
+		        String alert = "Your Login Sucess!";
+				out.println("alert('" + alert + "');");
+		        out.println("</script>");
 				RequestDispatcher rd=request.getRequestDispatcher("EmployeeHome.html");
 				rd.include(request, response);
 				log.isDebugEnabled();
 	}else {
+		out.println("<script>");
+        String alert = "Your Login failed. Try again!";
+		out.println("alert('" + alert + "');");
+        out.println("</script>");
 		RequestDispatcher rd=request.getRequestDispatcher("EmployeeLogin.html");
 		rd.include(request, response);
 	}

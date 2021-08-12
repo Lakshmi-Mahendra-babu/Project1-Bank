@@ -14,10 +14,14 @@ import org.apache.log4j.Logger;
 
 import com.bank.client.Customer;
 import com.bank.dao.CustomerDAOImp;
+import com.bank.dao.EmployeeDAOImplementation;
 
-public class OneCustomer extends HttpServlet {
+public class OneCustomerEmp extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		Logger log = Logger.getLogger(OneCustomer.class);
 		int CustomerAccountNumber = Integer.parseInt(request.getParameter("CustomerAccountNumber"));
 		log.info("Customer Details Generated!");
@@ -54,7 +58,7 @@ public class OneCustomer extends HttpServlet {
         String alert = "Customer Details Generated!";
 		out.println("alert('" + alert + "');");
         out.println("</script>");
-		 RequestDispatcher rd=request.getRequestDispatcher("CustomerHome.html");  
+		 RequestDispatcher rd=request.getRequestDispatcher("EmployeeHome.html");  
          rd.include(request, response); 
 	}
 

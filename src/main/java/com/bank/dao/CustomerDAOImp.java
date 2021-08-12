@@ -70,12 +70,12 @@ public class CustomerDAOImp implements CustomerDAO{
 		return clist;
 	}
 	
-	public Customer existingCustomer(int CustomerAccountNumber,String CustomerName) {
+	public String existingCustomer(int CustomerAccountNumber,String CustomerName) {
 		 
 		Transaction tx=null;
 		Session session=null;
 		Customer c=new Customer();
-		Customer pass=null;
+		String pass=null;
 //		Customer query=null;
 		try {
 		session = HibernateUtill.getSessionFactory().openSession();
@@ -147,6 +147,14 @@ public class CustomerDAOImp implements CustomerDAO{
     	session.update(c);
     	session.save(c);
     	session.getTransaction().commit();
+    	if(curramo!=0) {
+    		CustomerTransaction ct=new CustomerTransaction();
+    		ct.setCustomerAccountNumber(CustomerAccountNumber);
+    		ct.setAmount(CreditedAmount);
+    		ct.setBalanceAmount(total);
+    		ct.setType("Deposit");
+    		customerTransaction(ct);
+    	}
     	System.out.println(c);
 		}catch(Exception e) {
     		if(tx!=null) {
@@ -180,6 +188,14 @@ public class CustomerDAOImp implements CustomerDAO{
     	session.save(c);
     	session.getTransaction().commit();
     	System.out.println(c);
+    	if(total!=0) {
+        	CustomerTransaction ct=new CustomerTransaction();
+    		ct.setCustomerAccountNumber(CustomerAccountNumber);
+    		ct.setAmount(DebitedAmount);
+    		ct.setBalanceAmount(total);
+    		ct.setType("Withdraw");
+    		customerTransaction(ct);
+    	}
     	}else {
     		System.out.println("You Amount is not Sufficent. Please try to withdraw other amount!");
     	}
@@ -196,83 +212,64 @@ public class CustomerDAOImp implements CustomerDAO{
 		//return 0;
 		return c;
 	}
+	public int transfer(int CustomerAccountNumber,int transferAccount,int Amount) {
+		// TODO Auto-generated method stub
+		int result=0;
+		Customer c=depositUpdate(CustomerAccountNumber,Amount);
+		if(c!=null) {
+			withdrawUpdate(transferAccount, Amount);
+			result=1;
+		}
+		return result;
+	} 	
 	
-	
-//	public int customerTransaction(CustomerTransaction ct) {
-//		// TODO Auto-generated method stub
-//		Transaction tx=null;
-//		Session session=null;
-//		int result=0;
-//		try {
-//			session = HibernateUtill.getSessionFactory().openSession();
-//	        tx=session.beginTransaction();
-//	        session.save(ct);
-//	        tx.commit();
-//	        System.out.println(ct);
-//	        result=1;
-//		}catch(Exception e) {
-//    		if(tx!=null) {
-//    			tx.rollback();
-//    		}
-//    		e.printStackTrace();
-//    	}finally {
-//    		if(session!=null) {
-//    			session.close();
-//    		}
-//    	}
-//		return result;
-//	}
-}	
-	
-//	@Override
-//	public List<Customer> getPersons() {
-//		
-//		
-//		Customer person=null;
-//		List<Customer> personList = new ArrayList<Customer>();
-//		Connection conn=null;
-//		
-//		 try {
-//			conn=ConnectionUtils.getConnection();
-//			 
-//			Statement stmt=conn.createStatement();
-//			String queryActor="Select * from customer";
-//			ResultSet rs=stmt.executeQuery(queryActor);
-//			
-//			while(rs.next()) {
-//				 person=new Customer();
-//				person.setCustomerAccountNumber(rs.getInt(0));
-//				person.setCustomerName(rs.getString(1));
-//				person.setMailId(rs.getString(2));
-//				person.setMailId(rs.getString(3));
-//				personList.add(person);
-//			}		
-//			
-//						stmt.close();
-//						conn.close();
-//						
-//					}  catch (SQLException e) {
-//						// TODO Auto-generated catch block
-//						e.printStackTrace();
-//					}
-//					return personList;
-//				}
-//	}
-
-
-//	@Override
-//	public List<Customer> existingCustomer(long  customerAccountNumber) {
-//		// TODO Auto-generated method stub
-//		//List<Customer> listOfcus=null;
-//			Session session = HibernateUtill.getSessionFactory().openSession();
-//	    	Transaction tx=session.beginTransaction();
-//	    	Query query=session.getNamedQuery("findCustomerByAccountNumber").setParameter("CustomerAccountNumber",customerAccountNumber);
-//	    	List<Customer> sts=query.getResultList();
-//	    	for(Customer student : sts) {
-//	    		System.out.println(student);
-//	    	}
-//	    	session.getTransaction().commit();
-//	    	session.close();
-//			return sts;
-//	}
-
+	public int customerTransaction(CustomerTransaction ct) {
+		// TODO Auto-generated method stub
+		Transaction tx=null;
+		Session session=null;
+		int result=0;
+		try {
+			session = HibernateUtill.getSessionFactory().openSession();
+	        tx=session.beginTransaction();
+	        session.save(ct);
+	        tx.commit();
+	        System.out.println(ct);
+	        result=1;
+		}catch(Exception e) {
+    		if(tx!=null) {
+    			tx.rollback();
+    		}
+    		e.printStackTrace();
+    	}finally {
+    		if(session!=null) {
+    			session.close();
+    		}
+    	}
+		return result;
+	}
+	@Override
+	public List<CustomerTransaction> getCustomerTransaction(int CustomerAccountNumber) {
+		CustomerTransaction cus=null;
+		
+		Transaction tx=null;
+		Session session=null;
+		List<CustomerTransaction> list=null;
+		 try {
+			 cus=new CustomerTransaction();
+				session = HibernateUtill.getSessionFactory().openSession();
+		        tx=session.beginTransaction();
+		        list=session.getNamedQuery("getCustomerTransaction").setParameter("CustomerAccountNumber",CustomerAccountNumber).list();
+		        tx.commit();
+			}catch(Exception e) {
+	    		if(tx!=null) {
+	    			tx.rollback();
+	    		}
+	    		e.printStackTrace();
+	    	}finally {
+	    		if(session!=null) {
+	    			session.close();
+	    		}
+	    	}
+			return list;	
+}
+}

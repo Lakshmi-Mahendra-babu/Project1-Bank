@@ -12,34 +12,24 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 
 import com.bank.client.Customer;
-import com.bank.client.CustomerTransaction;
 import com.bank.dao.CustomerDAOImp;
-import com.bank.dao.EmployeeDAOImplementation;
 
-public class Deposit extends HttpServlet {
-	
+public class Transfer extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		Logger log = Logger.getLogger(Deposit.class);
-		log.debug("Deposit Money!");
+		log.debug("Transfer Money!");
 		int id = Integer.parseInt(request.getParameter("CustomerAccountNumber"));
+		int tid= Integer.parseInt(request.getParameter("TransferCustomerAccountNumber"));
      	int amount = Integer.parseInt(request.getParameter("CreditedAmount"));
 		
-		
-		//CustomerTransaction ct=new CustomerTransaction();
 		CustomerDAOImp dao=new CustomerDAOImp();
 		Customer c=new Customer();
-//		int cum=c.getCurrentAmount()+amount;
-//		c.setCreditedAmount(amount);
-//		c.setCurrentAmount(cum);
-//		c.setCustomerAccountNumber(id);
-		Customer d=dao.depositUpdate(id,amount);	
+		int d=dao.transfer(id, tid, amount);	
 		PrintWriter out=response.getWriter();
-		if(d!=null) {
-				//int curam = c.getCurrentAmount(Integer.parseInt(request.getParameter("CurrentAmount")));
-				//int camou=curam+amount; 
-				//c.setCurrentAmount(amount);
+		if(d!=0) {
 			out.println("<script>");
-	        String alert = "Amount Deposited Sucessfully!";
+	        String alert = "Amount Transfered Sucessfully!";
 			out.println("alert('" + alert + "');");
 	        out.println("</script>");
 			
@@ -52,10 +42,10 @@ public class Deposit extends HttpServlet {
         String alert = "Amount Not Deposited! Please Try Again";
 		out.println("alert('" + alert + "');");
         out.println("</script>");
-		RequestDispatcher rd=request.getRequestDispatcher("Deposit.html");
+		RequestDispatcher rd=request.getRequestDispatcher("Transfer.html");
 		rd.include(request, response);
 		log.warn("Amount not Deposited!");
 	}
 	}
-	}
 
+}

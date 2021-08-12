@@ -38,12 +38,19 @@ public class Withdraw extends HttpServlet {
 				//int curam = c.getCurrentAmount(Integer.parseInt(request.getParameter("CurrentAmount")));
 				//int camou=curam+amount; 
 				//c.setCurrentAmount(amount);
-			
+			out.println("<script>");
+	        String alert = "Amount Debited Sucessfully!";
+			out.println("alert('" + alert + "');");
+	        out.println("</script>");
 				RequestDispatcher rd=request.getRequestDispatcher("CustomerHome.html");
 				rd.include(request, response);
 				
 				log.info("Amount Withdraw Sucess!");
 	}else {
+		out.println("<script>");
+        String alert = "Amount Withdraw Fail. Try Again!";
+		out.println("alert('" + alert + "');");
+        out.println("</script>");
 		RequestDispatcher rd=request.getRequestDispatcher("Withdraw.html");
 		rd.include(request, response);
 	}

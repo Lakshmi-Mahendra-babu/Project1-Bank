@@ -25,17 +25,25 @@ public class CustomerLogin extends HttpServlet {
 		
 		Customer c=new Customer();
 		CustomerDAOImp dao=new CustomerDAOImp();
-		Customer pass=dao.existingCustomer(id,password);
+		String pass=dao.existingCustomer(id,password);
 //		int accno = c.se();
 
 		PrintWriter out=response.getWriter();
-		out.print(pass);
+//		out.print(pass);
 //		if(id==accno) {
 			if(pass!=null) {
+				out.println("<script>");
+		        String alert = "Customer has been Logined Sucessfully!";
+				out.println("alert('" + alert + "');");
+		        out.println("</script>");
 				RequestDispatcher rd=request.getRequestDispatcher("CustomerHome.html");
 				rd.include(request, response);
 				log.info("Customer Login Sucess!");
 	}else {
+		out.println("<script>");
+        String alert = "Customer has been Logi Fail!";
+		out.println("alert('" + alert + "');");
+        out.println("</script>");
 		RequestDispatcher rd=request.getRequestDispatcher("CustomerLogin.html");
 		rd.include(request, response);
 //	}

@@ -77,6 +77,46 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>OneCustomer</servlet-name>
-    <url-pattern>/oneCustomer</url-pattern>
+    <url-pattern>/OneCustomer</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>OneCustomerEmp</display-name>
+    <servlet-name>OneCustomerEmp</servlet-name>
+    <servlet-class>com.bank.servlet.OneCustomerEmp</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>OneCustomerEmp</servlet-name>
+    <url-pattern>/OneCustomerEmp</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CustomerTrans</display-name>
+    <servlet-name>CustomerTrans</servlet-name>
+    <servlet-class>com.bank.servlet.CustomerTrans</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CustomerTrans</servlet-name>
+    <url-pattern>/CustomerTrans</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CustomerTransEmp</display-name>
+    <servlet-name>CustomerTransEmp</servlet-name>
+    <servlet-class>com.bank.servlet.CustomerTransEmp</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CustomerTransEmp</servlet-name>
+    <url-pattern>/CustomerTransEmp</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Transfer</display-name>
+    <servlet-name>Transfer</servlet-name>
+    <servlet-class>com.bank.servlet.Transfer</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Transfer</servlet-name>
+    <url-pattern>/Transfer</url-pattern>
   </servlet-mapping>
 </web-app>

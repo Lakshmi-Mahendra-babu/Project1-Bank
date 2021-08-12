@@ -12,18 +12,19 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
-import com.bank.client.Customer;
+import com.bank.client.CustomerTransaction;
 import com.bank.dao.CustomerDAOImp;
 
-public class OneCustomer extends HttpServlet {
+public class CustomerTransEmp extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Logger log = Logger.getLogger(OneCustomer.class);
 		int CustomerAccountNumber = Integer.parseInt(request.getParameter("CustomerAccountNumber"));
-		log.info("Customer Details Generated!");
+		log.info("Customer Transaction Details Generated!");
 		PrintWriter out= response.getWriter();
 		CustomerDAOImp dao=new CustomerDAOImp();
-		List<Customer> li=dao.getCustomer(CustomerAccountNumber);
+		List<CustomerTransaction> li=dao.getCustomerTransaction(CustomerAccountNumber);
 		 out.println("<html>"
 		 		+ "<head>"
 		 		+ "<style>"
@@ -34,27 +35,24 @@ public class OneCustomer extends HttpServlet {
 		 		+ "}"
 		 		+ "</style>"
 		 		+ "</head>"
-		 		+ "<body><center><table id=\"customerapi/customerdetail/CustomerAccountNumber\"  style=width:100%>");  
-         out.println("<tr><th>CustomerAccountNumber</th><th>CustomerName</th><th>MailId</th><th>MobileNumber</th><th>Address</th><th>CurrentAmount</th><th>CreditedAmount</th><th>DebitedAmount</th><tr></center>");  
+		 		+ "<body><center><table id=\"customertrans/transaction/CustomerAccountNumber\"  style=width:100%>");  
+         out.println("<tr><th>CustomerAccountNumber</th><th>CurrentAmount</th><th>Credited/DebitedAmount</th><th>Type</th><tr></center>");  
          
 		for(int i=0;i<li.size();i++) {
 			int caccno=li.get(i).getCustomerAccountNumber();
-			String cname=li.get(i).getCustomerName();
-			String cmail=li.get(i).getMailId();
-			long cmobile=li.get(i).getMobileNumber();
-			String caddress=li.get(i).getAddress();
-			int camonut=li.get(i).getCurrentAmount();
-			int ccredit=li.get(i).getCreditedAmount();
-			int cdebit=li.get(i).getDebitedAmount();
 			
-			out.println("<tr><td>" + caccno + "</td><td>" + cname + "</td><td>" + cmail + "</td><td>" + cmobile + "</td><td>"+ caddress +"</td><td>"+ camonut+ "</td><td>"+ ccredit +"</td><td>" + cdebit + "</td></tr>"); 
+			int camonut=li.get(i).getBalanceAmount();
+			int ccredit=li.get(i).getAmount();
+			String type=li.get(i).getType();
+			
+			out.println("<tr><td>" + caccno + "</td><td>"+ camonut+ "</td><td>"+ ccredit +"</td><td>" + type + "</td></tr>"); 
 			
 		}
 		out.println("<script>");
-        String alert = "Customer Details Generated!";
+        String alert = "Customer Transaction Details Generated!";
 		out.println("alert('" + alert + "');");
         out.println("</script>");
-		 RequestDispatcher rd=request.getRequestDispatcher("CustomerHome.html");  
+		 RequestDispatcher rd=request.getRequestDispatcher("EmployeeHome.html");  
          rd.include(request, response); 
 	}
 

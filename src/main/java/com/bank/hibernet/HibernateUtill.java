@@ -23,7 +23,7 @@ public class HibernateUtill {
                 
                 Properties settings = new Properties();
                 settings.put(Environment.DRIVER, "com.mysql.jdbc.Driver");
-                settings.put(Environment.URL, "jdbc:mysql://localhost:3306/bankweb");
+                settings.put(Environment.URL, "jdbc:mysql://localhost:3306/bankproject");
                 settings.put(Environment.USER, "root");
                 settings.put(Environment.PASS, "8008@Mahe");
                 settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL8Dialect");
@@ -34,7 +34,7 @@ public class HibernateUtill {
                 configuration.addAnnotatedClass(Customer.class);
                 configuration.addAnnotatedClass(Employee.class);
                 configuration.addAnnotatedClass(EmployeeLogin.class);
-//                configuration.addAnnotatedClass(CustomerTransaction.class); 
+               configuration.addAnnotatedClass(CustomerTransaction.class); 
                
                 ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                     .applySettings(configuration.getProperties()).build();
