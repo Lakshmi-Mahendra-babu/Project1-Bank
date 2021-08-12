@@ -9,7 +9,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import com.bank.client.Customer;
 import com.bank.client.CustomerTransaction;
 import com.bank.dao.CustomerDAOImp;
 import com.fasterxml.jackson.core.JsonProcessingException;

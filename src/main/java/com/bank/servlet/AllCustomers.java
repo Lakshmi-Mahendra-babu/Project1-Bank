@@ -14,7 +14,6 @@ import org.apache.log4j.Logger;
 
 import com.bank.client.Customer;
 import com.bank.dao.CustomerDAOImp;
-import com.bank.dao.EmployeeDAOImplementation;
 
 
 public class AllCustomers extends HttpServlet {

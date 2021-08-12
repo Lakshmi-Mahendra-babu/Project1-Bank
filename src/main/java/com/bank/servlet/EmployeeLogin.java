@@ -15,8 +15,6 @@ import com.bank.client.Employee;
 import com.bank.dao.EmployeeDAOImplementation;
 
 public class EmployeeLogin extends HttpServlet {
-//	private static final long serialVersionUID = 1L;
-
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Logger log = Logger.getLogger(EmployeeLogin.class);
@@ -24,13 +22,10 @@ public class EmployeeLogin extends HttpServlet {
 		String userid = request.getParameter("EmployeeId");
      	String password = request.getParameter("Password");
 		
-		Employee e=new Employee();
-		String ui=e.setEmployeeId(request.getParameter("EmployeeId"));
-		String pass=e.setPassword(request.getParameter("Password"));
 		EmployeeDAOImplementation dao=new EmployeeDAOImplementation();
-		dao.existingEmployee(userid);
+		Employee emp=dao.existingEmployee(userid);
+		String pass=emp.getPassword();
 		PrintWriter out=response.getWriter();
-		if(userid.equalsIgnoreCase(ui)) {
 			if(password.equalsIgnoreCase(pass)) {
 				out.println("<script>");
 		        String alert = "Your Login Sucess!";
@@ -47,7 +42,5 @@ public class EmployeeLogin extends HttpServlet {
 		RequestDispatcher rd=request.getRequestDispatcher("EmployeeLogin.html");
 		rd.include(request, response);
 	}
-
 }	
-	}
 }

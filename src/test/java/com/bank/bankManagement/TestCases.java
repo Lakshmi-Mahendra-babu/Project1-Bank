@@ -41,7 +41,6 @@ public class TestCases {
 	}
 	@Test
 	public void testTransactionDetails() {
-		CustomerTransaction ct=new CustomerTransaction();
 		Assert.assertNotEquals(null,cus.getCustomerTransaction(1));
 	}
 	@Test

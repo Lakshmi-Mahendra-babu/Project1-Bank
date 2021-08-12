@@ -1,14 +1,8 @@
 package com.bank.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.persistence.Query;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -47,9 +41,7 @@ public class CustomerDAOImp implements CustomerDAO{
 		Transaction tx=null;
 		Session session=null;
 		List<Customer> clist=new ArrayList<Customer>();
-		Customer cus=null;
 		try {
-			cus=new Customer();
 			session = HibernateUtill.getSessionFactory().openSession();
 	        tx=session.beginTransaction();
 	        clist=session.getNamedQuery("allCustomers").list();
@@ -70,27 +62,19 @@ public class CustomerDAOImp implements CustomerDAO{
 		return clist;
 	}
 	
-	public String existingCustomer(int CustomerAccountNumber,String CustomerName) {
+	public Customer existingCustomer(int CustomerAccountNumber,String CustomerName) {
 		 
 		Transaction tx=null;
 		Session session=null;
 		Customer c=new Customer();
-		String pass=null;
-//		Customer query=null;
 		try {
 		session = HibernateUtill.getSessionFactory().openSession();
     	tx=session.beginTransaction();
-//    	query = (Customer) session.getNamedQuery("customerLogin").setParameter("CustomerAccountNumber",CustomerAccountNumber).uniqueResult();
-    	 //String sts=query.();
     	c=session.get(Customer.class,CustomerAccountNumber);
-    	c.getCustomerName();
-//    	session.save(c);
+    	c.getCustomerAccountNumber();
     	String pas=c.getCustomerName();
     	session.getTransaction().commit();
     	System.out.println(pas);
-        if(CustomerName.equalsIgnoreCase(pas)) {
-        	System.out.println("Sucess");
-        }
 		}catch(Exception e) {
     		if(tx!=null) {
     			tx.rollback();
@@ -101,18 +85,16 @@ public class CustomerDAOImp implements CustomerDAO{
     			session.close();
     		}
     	}
-		return pass;
+		return c;
 	}
 	
 	@Override
 	public List<Customer> getCustomer(int CustomerAccountNumber) {
-		Customer cus=null;
 		
 		Transaction tx=null;
 		Session session=null;
 		List<Customer> list=null;
 		 try {
-			 cus=new Customer();
 				session = HibernateUtill.getSessionFactory().openSession();
 		        tx=session.beginTransaction();
 		        list=session.getNamedQuery("getCustomer").setParameter("CustomerAccountNumber",CustomerAccountNumber).list();
@@ -249,13 +231,11 @@ public class CustomerDAOImp implements CustomerDAO{
 	}
 	@Override
 	public List<CustomerTransaction> getCustomerTransaction(int CustomerAccountNumber) {
-		CustomerTransaction cus=null;
 		
 		Transaction tx=null;
 		Session session=null;
 		List<CustomerTransaction> list=null;
 		 try {
-			 cus=new CustomerTransaction();
 				session = HibernateUtill.getSessionFactory().openSession();
 		        tx=session.beginTransaction();
 		        list=session.getNamedQuery("getCustomerTransaction").setParameter("CustomerAccountNumber",CustomerAccountNumber).list();

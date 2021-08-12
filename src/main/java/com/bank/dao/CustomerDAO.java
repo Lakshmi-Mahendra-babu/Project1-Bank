@@ -9,7 +9,7 @@ import com.bank.client.CustomerTransaction;
 public interface CustomerDAO {
 	public void newCustomer(Customer cust);
 	public List<Customer> allCustomers();
-	public String existingCustomer(int CustomerAccountNumber,String CustomerName);
+	public Customer existingCustomer(int CustomerAccountNumber,String CustomerName);
 	public List<Customer> getCustomer(int CustomerAccountNumber);
 	public Customer depositUpdate(int CustomerAccountNumber,int CreditedAmount);
 	public Customer withdrawUpdate(int CustomerAccountNumber,int DebitedAmount);

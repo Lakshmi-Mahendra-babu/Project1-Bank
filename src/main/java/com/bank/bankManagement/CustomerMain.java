@@ -61,7 +61,7 @@ public class CustomerMain {
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	public String newCustomer1(@FormParam("CustomerName") String CustomerName,@FormParam("MailId") String MailId,@FormParam("MobileNumber") long MobileNumber,@FormParam("Address") String Address,@FormParam("CurrentAmount") int CurrentAmount) {
 			log.info("Customer Registration Form!");
-			int result=0;
+		   int result=0;
 		   Customer cust=new Customer();
 	       cust.setCustomerName(CustomerName);
 	       cust.setMailId(MailId);
@@ -77,25 +77,4 @@ public class CustomerMain {
 	    	   return "Account not Created!";
 	       }
 	}
-	
-	
-//	@POST
-//	@Path("/customerlog")  // http://localhost:8080/bankManagement/webapi/customerapi/customerlog
-//	@Produces(MediaType.TEXT_PLAIN)
-//	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-//	public String existingCustomer1(@FormParam("CustomerAccountNumber") int CustomerAccountNumber,@FormParam("CustomerName") String CustomerName) {
-//		   //int result=0;
-//		   Customer cust=new Customer();
-//	       String pa=cust.setCustomerName(CustomerName);
-//	       //cust.setMailId(MailId);
-//	       CustomerDAOImp dao=new CustomerDAOImp();
-//	       dao.existingCustomer(CustomerAccountNumber);
-//	       //result=1;
-//	       if(pa.equalsIgnoreCase(CustomerName)) {
-//	    	   return "<html>"+"<a href='Home.html'>"+"</html>";
-//	       }else {
-//	    	   return "Account not Created!";
-//	       }
-//			
-//	}
 	}
