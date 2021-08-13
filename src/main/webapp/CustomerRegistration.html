@@ -10,7 +10,7 @@
   <body>
 <div class="login-box">
   <h1>REGISTRATION</h1>
-  <form action="webapi/customerapi/customerid" method="POST">
+  <form action="CustomerRegist" method="POST">
   <div class="textbox">
     <i class="fa fa-user"></i>
     <input type="text" name="CustomerName" placeholder="CustomerName" required>
@@ -21,27 +21,19 @@
   </div>
   <div class="textbox">
     <i class="fa fa-phone"></i>
-    <input type="text" name="MobileNumber" placeholder="MobileNumber" required> 
+    <input type="tel" name="MobileNumber" placeholder="MobileNumber" pattern="[789]{1}[0-9]{9}" maxlength="10" required> 
   </div>
-  <!-- <div class="textbox">
-  <input type="date" id="DateofBirth" name="DateofBirth">
-  </div> -->
-  <!-- <select class="textbox" name="Gender" required>
-  
-<option><i class="fa fa-envelope"></i>Select Gender</option>
-<option>Male</option>
-<option>Female</option>
-<option>Other</option>		 -->
-<div class="textbox">
-    <i class="fa fa-envelope"></i>
-<input type="text" name="Address" placeholder="Address">
-</div>
-<div class="textbox">
-  <i class="fa fa-cash"></i>
+  <div class="textbox">
+    <i class="fa fa-map-marker"></i>
+	<input type="text" name="Address" placeholder="Address">
+	</div>
+	<div class="textbox">
+  <i class="fa fa-money"></i>
   <input type="number" name="CurrentAmount" placeholder="DepositAmount" min="500" required> 
-</div>
-<input type="submit" name="submit" class="btn" value="Register">
-</form>
-</div>
+	</div>
+	<input type="submit" name="submit" class="btn" value="Register">
+	<a href="Home.html">Go Back for Login</a>
+	</form>
+	</div>
 </body>
 </html>

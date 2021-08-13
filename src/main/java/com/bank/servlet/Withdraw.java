@@ -25,19 +25,14 @@ public class Withdraw extends HttpServlet {
 		int id = Integer.parseInt(request.getParameter("CustomerAccountNumber"));
      	int amount = Integer.parseInt(request.getParameter("DebitedAmount"));
 		
-     	//CustomerTransaction ct=new CustomerTransaction();
+     	
      	CustomerDAOImp dao=new CustomerDAOImp();
      	Customer c=new Customer();
-//     	int cum=c.getCurrentAmount()+amount;
-//     	c.setCreditedAmount(amount);
-//     	c.setCurrentAmount(cum);
-//     	c.setCustomerAccountNumber(id);
+
      	Customer d=dao.withdrawUpdate(id,amount);	
      	PrintWriter out=response.getWriter();
 		if(d!=null) {
-				//int curam = c.getCurrentAmount(Integer.parseInt(request.getParameter("CurrentAmount")));
-				//int camou=curam+amount; 
-				//c.setCurrentAmount(amount);
+				
 			out.println("<script>");
 	        String alert = "Amount Debited Sucessfully!";
 			out.println("alert('" + alert + "');");

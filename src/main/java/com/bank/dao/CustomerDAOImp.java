@@ -15,7 +15,7 @@ import com.bank.client.CustomerTransaction;
 public class CustomerDAOImp implements CustomerDAO{
 	
 	@Override
-	public void newCustomer(Customer cust) {
+	public Customer newCustomer(Customer cust) {
 		// TODO Auto-generated method stub
 		Transaction tx=null;
 		Session session=null;
@@ -35,6 +35,7 @@ public class CustomerDAOImp implements CustomerDAO{
     			session.close();
     		}
     	}
+		return cust;
 	}
 	
 	public List<Customer> allCustomers(){
@@ -197,15 +198,15 @@ public class CustomerDAOImp implements CustomerDAO{
 	public int transfer(int CustomerAccountNumber,int transferAccount,int Amount) {
 		// TODO Auto-generated method stub
 		int result=0;
-		Customer c=depositUpdate(CustomerAccountNumber,Amount);
+		Customer c=withdrawUpdate(CustomerAccountNumber,Amount);
 		if(c!=null) {
-			withdrawUpdate(transferAccount, Amount);
+			depositUpdate(transferAccount, Amount);
 			result=1;
 		}
 		return result;
 	} 	
 	
-	public int customerTransaction(CustomerTransaction ct) {
+	public CustomerTransaction customerTransaction(CustomerTransaction ct) {
 		// TODO Auto-generated method stub
 		Transaction tx=null;
 		Session session=null;
@@ -227,7 +228,7 @@ public class CustomerDAOImp implements CustomerDAO{
     			session.close();
     		}
     	}
-		return result;
+		return ct;
 	}
 	@Override
 	public List<CustomerTransaction> getCustomerTransaction(int CustomerAccountNumber) {

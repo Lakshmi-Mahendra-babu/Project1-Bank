@@ -119,4 +119,14 @@
     <servlet-name>Transfer</servlet-name>
     <url-pattern>/Transfer</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CustomerRegist</display-name>
+    <servlet-name>CustomerRegist</servlet-name>
+    <servlet-class>com.bank.servlet.CustomerRegist</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CustomerRegist</servlet-name>
+    <url-pattern>/CustomerRegist</url-pattern>
+  </servlet-mapping>
 </web-app>
