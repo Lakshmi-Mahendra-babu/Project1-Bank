@@ -2,10 +2,13 @@ Banking Operations
 
 
 Project Description:
+
 The Bank app is a web-based application that simulates banking operations. A customer can apply for an account, view their balance, and make withdrawals and deposits. An employee can approve or deny accounts and view account balances for their customers.
 
 
+
 Technologies Used:
+
 •	Java 1.8
 •	Servlets
 •	Rest
@@ -20,7 +23,10 @@ Technologies Used:
 •	Log4j
 
 
+
+
 Features:
+
 •	As a user, I can login.
 •	As a customer, I can apply for a new bank account with a starting balance.
 •	As a customer, I can view the balance of a specific account.
@@ -33,7 +39,10 @@ Features:
 •	As a customer, I can accept a money transfer from another account.
 •	An employee, I can view a log of all transactions.
 
+
+
 Getting Started/Usage:
+
 In order to see this project in action, you will need a few things:
 1.	Be sure to have Apache Tomcat 9.0 and Visual Studio Code installed.
 2.	Be sure to have the Java 8 runtime environment installed.
@@ -46,7 +55,9 @@ Once cloned, copy the .war file located within the /target directory and paste i
 
 
 
+
 Contributors:
+
 • Lakshmi mahendra babu
 
 
